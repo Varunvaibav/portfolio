@@ -29,7 +29,11 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, .logo {
+h1,
+h2,
+h3,
+h4,
+.logo {
     font-family: var(--font-primary);
     font-weight: 700;
 }
@@ -81,8 +85,13 @@ h1, h2, h3, h4, .logo {
 }
 
 @keyframes move {
-    from { transform: translate(0, 0); }
-    to { transform: translate(100px, 100px); }
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(100px, 100px);
+    }
 }
 
 /* Navbar */
@@ -440,7 +449,17 @@ nav {
     flex-wrap: wrap;
 }
 
+.contact-actions {
+    margin-top: 2rem;
+}
+
+.btn-large {
+    padding: 1.2rem 3rem;
+    font-size: 1.2rem;
+}
+
 .contact-item {
+
     text-decoration: none;
     color: var(--text-color);
     display: flex;
@@ -470,7 +489,8 @@ nav {
     margin-bottom: 1rem;
 }
 
-input, textarea {
+input,
+textarea {
     width: 100%;
     padding: 1.2rem;
     background: rgba(255, 255, 255, 0.05);
@@ -482,7 +502,8 @@ input, textarea {
     transition: all 0.3s;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     border-color: var(--secondary-accent);
     background: rgba(255, 255, 255, 0.1);
 }
@@ -504,28 +525,28 @@ input:focus, textarea:focus {
     .nav-links {
         display: none;
     }
-    
+
     .hero-content h1 {
         font-size: 3.5rem;
     }
-    
+
     .form-row {
         grid-template-columns: 1fr;
     }
-    
+
     .contact-card {
         padding: 2rem;
     }
-    
+
     .timeline::before {
         left: 10px;
     }
-    
+
     .timeline-item {
         margin-left: 35px;
         padding: 1.5rem;
     }
-    
+
     .timeline-dot {
         left: -33px;
     }

@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Form submission handling (stub)
+    // Form submission handling (AJAX)
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = contactForm.querySelector('button');
             const originalText = btn.textContent;
@@ -45,14 +45,37 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.textContent = 'Sending...';
             btn.disabled = true;
 
-            setTimeout(() => {
-                alert('Thanks for your message! This is a static portfolio, so no email was actually sent. In a live version, you could connect this to a service like Formspree or EmailJS.');
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Thanks for your message! I will get back to you soon.');
+                    contactForm.reset();
+                } else {
+                    const data = await response.json();
+                    if (Object.hasOwn(data, 'errors')) {
+                        alert(data["errors"].map(error => error["message"]).join(", "));
+                    } else {
+                        alert("Oops! There was a problem submitting your form");
+                    }
+                }
+            } catch (error) {
+                alert("Oops! There was a problem submitting your form");
+            } finally {
                 btn.textContent = originalText;
                 btn.disabled = false;
-                contactForm.reset();
-            }, 1500);
+            }
         });
     }
+
 
     // Dynamic Navbar Background
     const nav = document.querySelector('nav');
